@@ -1,3 +1,5 @@
+# This CI build & deploy config is based on the tutorial found @ https://swimburger.net/blog/dotnet/how-to-deploy-aspnet-blazor-webassembly-to-github-pages
+
 name: Deploy to GitHub Pages
 
 on:
@@ -21,6 +23,15 @@ jobs:
       run: dotnet restore
     - name: Publish
       run: dotnet publish RandomGenerators.Client/RandomGenerators.Client.csproj -c Release -o release --nologo
+    # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to RandomGeneratorsWebApp
+      run: sed -i 's/<base href="\/" \/>/<base href="\/RandomGeneratorsWebApp\/" \/>/g' release/wwwroot/index.html
+    # copy index.html to 404.html to serve the same file when a file is not found
+    - name: copy index.html to 404.html
+      run: cp release/wwwroot/index.html release/wwwroot/404.html
+    # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+    - name: Add .nojekyll file
+      run: touch release/wwwroot/.nojekyll
     - name: GitHub Pages action
       if: ${{ github.ref == 'refs/heads/master' }}
       uses: peaceiris/actions-gh-pages@v3.6.1
