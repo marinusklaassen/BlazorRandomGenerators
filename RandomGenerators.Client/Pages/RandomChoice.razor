@@ -1,0 +1,129 @@
+﻿@page "/"
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">Actions</div>
+        <div class="panel-body ">
+            <div class="btn-toolbar mb-3">
+                <button class="btn btn-lg col btn-primary" @onclick="OnClick_GenerateRandomChoice" type="button">
+                    <span class="oi oi-bolt" />&nbsp;Random Choice
+                </button>
+                <button class="btn btn-lg col btn-warning" @onclick="OnClick_ResetForm" type="button">
+                    <span class="oi oi-x" />&nbsp;Reset Form
+                </button>
+            </div>
+            <div class="card bg-light mb-3">
+                <h1 class="card-header text-center font-weight-bold">
+                    @RandomChoiceResult
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">Input</div>
+        <div class="panel-body">
+            <div class="input-group mb-3">
+                <input @bind="AddNewItem" @onkeyup="OnKeyUp_AddItemToInput" class="form-control" placeholder="Add a single item or comma separated list..." aria-label="New " aria-describedby="basic-addon2" />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" @onclick="OnClick_AddItemToInput" type="button">
+                        <span class="oi oi-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <table class="table">
+                @for (int itemIndex = 0; itemIndex < Items.Count; itemIndex++)
+                {
+                    var itemIndexScoped = itemIndex;
+                    <tbody>
+                        <tr class="row m-0">
+                            <td class="col-1">@(itemIndex + 1)</td>
+                            <td class="col-10 d-inline-block"><div>@Items[itemIndex]</div></td>
+                            <td class="col-1 float-right">
+                                <button class="btn btn-danger btn-md float-right rounded-0" @onclick="@(() => OnClick_RemoveItemFromInput(itemIndexScoped))" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><span class="oi oi-x"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private List<string> Items = new List<string>();
+
+    private string AddNewItem;
+
+    private readonly Random RandomGenerator = new Random();
+
+    private string RandomChoiceResult;
+
+    private List<string> ItemBucket = new List<string>();
+
+    private void AddItemFromIput()
+    {
+        if (String.IsNullOrEmpty(AddNewItem))
+        {
+            return;
+        }
+
+        string[] inputItems = AddNewItem.Trim().Split(',');
+        AddNewItem = "";
+
+        foreach (var item in inputItems)
+        {
+            if (!String.IsNullOrEmpty(item))
+            {
+                Items.Add(item);
+            }
+        }
+    }
+
+    private void OnClick_AddItemToInput()
+    {
+        AddItemFromIput();
+    }
+
+    private void OnKeyUp_AddItemToInput(KeyboardEventArgs eventArgs)
+    {
+        if (eventArgs.Key == "Enter")
+        {
+            AddItemFromIput();
+        }
+    }
+
+    private void OnClick_RemoveItemFromInput(int position)
+    {
+        Items.RemoveAt(position);
+        ItemBucket.Clear();
+    }
+
+    private void OnClick_GenerateRandomChoice()
+    {
+        var count = Items.Count;
+
+        if (count > 0)
+        {
+            if (ItemBucket.Count == 0)
+            {
+                ItemBucket = new List<string>(Items); // List cloning this way only works with value types. With objects you want a deep copy.
+            }
+            var randomIndex = RandomGenerator.Next(0, ItemBucket.Count);
+
+            RandomChoiceResult = ItemBucket[randomIndex];
+
+            ItemBucket.RemoveAt(randomIndex);
+        }
+    }
+
+    private void OnClick_ResetForm()
+    {
+        RandomChoiceResult = "";
+        Items.Clear();
+        ItemBucket.Clear();
+    }
+}
