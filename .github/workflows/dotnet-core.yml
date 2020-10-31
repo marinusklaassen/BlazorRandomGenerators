@@ -1,4 +1,4 @@
-name: .NET Core
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -7,31 +7,27 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-deploy-to-github-pages:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.6.0
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 3.1
     - name: Install dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet run --project RandomGenerators.Client/RandomGenerators.Client.csproj --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
     - name: Publish
-      run: dotnet publish RandomGenerators.Client/RandomGenerators.Client.csproj --configuration Release
+      run: dotnet publish RandomGenerators.Client/RandomGenerators.Client.csproj -c Release -o release --nologo
     - name: GitHub Pages action
       if: ${{ github.ref == 'refs/heads/master' }}
       uses: peaceiris/actions-gh-pages@v3.6.1
       with:
         github_token: ${{ secrets.PUBLISH_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: RandomGenerators.Client/bin/Release/netstandard2.1/wwwroot
+        publish_dir: release/wwwroot
         allow_empty_commit: false
         keep_files: false
         force_orphan: true
