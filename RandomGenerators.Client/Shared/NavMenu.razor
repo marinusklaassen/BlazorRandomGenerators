@@ -1,5 +1,5 @@
 ﻿<div class="top-row pl-2 navbar navbar-dark">
-    <a class="navbar-brand" href="">Random Generators&nbsp;<span class="oi oi-random" /></a>
+    <a class="navbar-brand" href="">Random Generators&nbsp;<span class="oi oi-grid-four-up" /></a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,12 +9,18 @@
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-layers"/>&nbsp;Random Choice
+                <span class="oi oi-list" />&nbsp;Random Choice
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="travestygenerator">
+                <span class="oi oi-text" />&nbsp;Travesty Generator
             </NavLink>
         </li>
         <li class="nav-item px-3 d-sm-none">
-            <NavLink class="nav-link" href="info"> <!--Only display on small screens-->
-               <span class="oi oi-info"/>&nbsp;Info
+            <NavLink class="nav-link" href="info">
+                <!--Only display on small screens-->
+                <span class="oi oi-info" />&nbsp;Info
             </NavLink>
         </li>
     </ul>

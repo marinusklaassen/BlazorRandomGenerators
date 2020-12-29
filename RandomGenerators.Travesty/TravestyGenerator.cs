@@ -6,7 +6,7 @@ namespace RandomGenerators.Travesty
     /// <summary>
     /// The TravestyGenerator class contains methods to deal with natural language processing by randomization of input text. 
     /// </summary>
-    public class TravestyGenerator
+    public class TravestyGenerator : ITravestyGenerator
     {
         public Random RandomInt = new Random(Guid.NewGuid().GetHashCode());
 
