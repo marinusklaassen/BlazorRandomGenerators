@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1.6.0
+      uses: actions/setup-dotnet@v1.7.2
       with:
         dotnet-version: 3.1
     - name: Install dependencies
@@ -32,4 +32,13 @@ jobs:
     # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
     - name: Add .nojekyll file
       run: touch release/wwwroot/.nojekyll
-
+    - name: Commit wwwroot to GitHub Pages
+      if: ${{ github.ref == 'refs/heads/master' }}
+      uses: peaceiris/actions-gh-pages@v3.7.3
+      with:
+        github_token: ${{ secrets.PUBLISH_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: release/wwwroot
+        allow_empty_commit: false
+        keep_files: false
+        force_orphan: true
