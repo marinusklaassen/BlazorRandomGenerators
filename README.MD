@@ -1,3 +1,9 @@
 **Random Generators App**
- 
-The 'Random Generators' app is written in .NET Blazor. It's a really simple client specific app. Just to fiddle around with Blazor and Bootstrap 4.
+
+# Random Generators App
+
+This [Random Generators App](https://marinusklaassen.github.io/RandomGeneratorsWebApp/ ) is written in .NET Blazor. It's a really simple client specific web application. Just to fiddle around with Blazor, Bootstrap 4 en GitHub Actions.
+
+# Build & Deploy Status
+
+![Deploy to GitHub Pages](https://github.com/marinusklaassen/RandomGeneratorsWebApp/workflows/Deploy%20to%20GitHub%20Pages/badge.svg?branch=master&)
