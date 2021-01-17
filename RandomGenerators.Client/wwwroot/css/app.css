@@ -181,3 +181,13 @@ app {
         display: block;
     }
 }
+
+@font-face {
+    font-family: "ean13font";
+    src: url("fonts/ean13font.ttf");
+}
+
+.barcode {
+    font-family: ean13font;
+}
+

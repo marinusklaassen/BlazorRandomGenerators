@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RandomGenerators.Travesty;
+using RandomGenerators.EAN13MockGenerator;
 
 namespace RandomGenerators.Client
 {
@@ -19,9 +20,12 @@ namespace RandomGenerators.Client
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
             // Register our own injectables
             builder.Services.AddSingleton<ITravestyGenerator, TravestyGenerator>();
-
+            builder.Services.AddSingleton<IEAN13MockGenerator, EAN13MockGenerator.EAN13MockGenerator>();
+            builder.Services.AddSingleton<IClipboardService, ClipboardService>();
+           
             await builder.Build().RunAsync();
         }
     }

@@ -42,7 +42,7 @@
                     var itemIndexScoped = itemIndex;
                     <tbody>
                         <tr class="row m-0">
-                            <td class="col-1">@(itemIndex + 1)</td>
+                            <td class="col-1">@(itemIndex + 1).</td>
                             <td class="col-10 d-inline-block"><div>@Items[itemIndex]</div></td>
                             <td class="col-1 float-right">
                                 <button class="btn btn-danger btn-md float-right rounded-0" @onclick="@(() => OnClick_RemoveItemFromInput(itemIndexScoped))" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><span class="oi oi-x"></span></button>

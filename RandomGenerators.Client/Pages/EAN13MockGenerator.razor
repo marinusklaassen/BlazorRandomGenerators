@@ -1,0 +1,42 @@
+﻿@page "/ean13generator"
+
+<h3>EAN13 Generator</h3>
+<hr />
+
+<!-- Blazor messaging: show a temperatory timed popup. -->
+
+<div class="btn-toolbar">
+    <input class="col-sm-12 col-md-1" type="number" value="@Count" @onchange="@((args) => { Count = Convert.ToInt32(args.Value); })" />
+    <button class="btn btn-primary col-sm-12 col-md-5" @onclick="On_Button_Generate">
+        <span class="oi oi-bolt"></span>Generate EAN13 codes
+    </button>
+    <button class="btn btn-lg col-sm-12 col-md-5 btn-warning" @onclick="OnClick_ResetForm" type="button">
+        <span class="oi oi-x" />&nbsp;Reset Form
+    </button>
+    <button class="btn btn-secondary col-sm-12 col-md-1 float-right rounded-0" @onclick="OnClick_CopyToClipboardAll" type="button" data-toggle="tooltip" data-placement="top" title="Copy all"><span class="oi oi-clipboard"></span></button>
+</div>
+
+<table class="table">
+    <tbody>
+        @for (int itemIndex = 0; itemIndex < EAN13Mocks.Count; itemIndex++)
+        {
+            var itemIndexScoped = itemIndex;
+
+            <tr class="row m-0">
+
+                <td class="col-1">@(itemIndex + 1).</td>
+                <td class="col-10 d-inline-block">
+                    <div class="text-center ">
+                        <span class="barcode display-4">@EAN13Mocks[itemIndex]</span>
+                        <div class="p">@EAN13Mocks[itemIndex]</div>
+                    </div>
+                </td>
+                <td class="col-1 float-right">
+                    <button class="btn btn-toolbar btn-md float-right rounded-0" @onclick="@(() => OnClick_CopyToClipboard(itemIndexScoped))" type="button" data-toggle="tooltip" data-placement="top" title="Copy row text"><span class="oi oi-clipboard"></span></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,11 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGenerators.Client", "RandomGenerators.Client\RandomGenerators.Client.csproj", "{BE9EB54D-C22D-4740-AD79-B612DE19F937}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomGenerators.Client", "RandomGenerators.Client\RandomGenerators.Client.csproj", "{BE9EB54D-C22D-4740-AD79-B612DE19F937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGenerators.Travesty", "RandomGenerators.Travesty\RandomGenerators.Travesty.csproj", "{02241210-2D13-49C9-AB82-F9D9E6BE195C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomGenerators.Travesty", "RandomGenerators.Travesty\RandomGenerators.Travesty.csproj", "{02241210-2D13-49C9-AB82-F9D9E6BE195C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGenerators.Travesty.UnitTests", "RandomGenerators.Travesty.UnitTests\RandomGenerators.Travesty.UnitTests.csproj", "{75CE3476-186F-4471-8A9E-902075064BC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomGenerators.Travesty.UnitTests", "RandomGenerators.Travesty.UnitTests\RandomGenerators.Travesty.UnitTests.csproj", "{75CE3476-186F-4471-8A9E-902075064BC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGenerators.EAN13MockGenerator", "RandomGenerators.EAN13MockGenerator\RandomGenerators.EAN13MockGenerator.csproj", "{25110710-B2D7-425D-AC4A-4C0A820CF28F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,5 +28,15 @@ Global
 		{75CE3476-186F-4471-8A9E-902075064BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75CE3476-186F-4471-8A9E-902075064BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75CE3476-186F-4471-8A9E-902075064BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25110710-B2D7-425D-AC4A-4C0A820CF28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25110710-B2D7-425D-AC4A-4C0A820CF28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25110710-B2D7-425D-AC4A-4C0A820CF28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25110710-B2D7-425D-AC4A-4C0A820CF28F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F864C5E-F55D-4FBC-9114-86D143F739B0}
 	EndGlobalSection
 EndGlobal
