@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Blazored.Toast.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using RandomGenerators.EAN13MockGenerator;
@@ -15,6 +16,9 @@ namespace RandomGenerators.Client.Pages
 
         [Inject]
         IClipboardService ClipboardService { get; set; }
+
+        [Inject]
+        IToastService ToastNotifcationService { get; set; }
 
         List<string> EAN13Mocks = new List<string>();
 
@@ -35,11 +39,15 @@ namespace RandomGenerators.Client.Pages
             var eanCode = EAN13Mocks[position]; 
             
             await ClipboardService.WriteTextAsync(eanCode);
+
+            ToastNotifcationService.ShowInfo($"Copied {eanCode} to your clipboard");
         }
 
         private async Task OnClick_CopyToClipboardAll()
         {
             var eanText = String.Join(Environment.NewLine, EAN13Mocks);
+
+            ToastNotifcationService.ShowInfo($"Copied {EAN13Mocks.Count} eancodes to your clipboard");
 
             await ClipboardService.WriteTextAsync(eanText);
         }
