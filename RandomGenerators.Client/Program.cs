@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RandomGenerators.Travesty;
 using RandomGenerators.EAN13MockGenerator;
+using Blazored.Toast;
 
 namespace RandomGenerators.Client
 {
@@ -25,7 +26,8 @@ namespace RandomGenerators.Client
             builder.Services.AddSingleton<ITravestyGenerator, TravestyGenerator>();
             builder.Services.AddSingleton<IEAN13MockGenerator, EAN13MockGenerator.EAN13MockGenerator>();
             builder.Services.AddSingleton<IClipboardService, ClipboardService>();
-           
+            builder.Services.AddBlazoredToast();
+
             await builder.Build().RunAsync();
         }
     }
