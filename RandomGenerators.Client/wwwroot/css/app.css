@@ -192,3 +192,10 @@ app {
 .barcode {
     font-family: ean13font;
 }
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 918px) {
+    .barcode {
+        font-size: 18px;
+    }
+}
